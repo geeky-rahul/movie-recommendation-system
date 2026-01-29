@@ -29,20 +29,6 @@ st.markdown(
     max-width: 1400px;
 }
 
-/* Card */
-.card {
-    border-radius: 18px;
-    padding: 12px;
-    background: #ffffff;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-    transition: transform .15s ease, box-shadow .15s ease;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.10);
-}
-
 /* Poster */
 .poster-wrapper {
     width: 100%;
@@ -52,11 +38,17 @@ st.markdown(
     background: #f3f4f6;
 }
 
+.poster-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+}
+
 .poster-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 
 /* Title */
 .movie-title {
@@ -257,7 +249,7 @@ if st.session_state.view == "home":
             poster_grid(cards, cols=grid_cols, key_prefix="search")
 
     else:
-        st.markdown(f"### 🏠 {home_category.replace('_',' ').title()} Movies")
+        st.markdown(f"### {home_category.replace('_',' ').title()} Movies")
         home_cards = api_get_json("/home", {"category": home_category, "limit": 24})
         poster_grid(home_cards or [], cols=grid_cols, key_prefix="home")
 
